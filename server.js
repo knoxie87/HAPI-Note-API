@@ -1,22 +1,31 @@
-'use strict';
-
+const crud = require('./crud.js')
 const Hapi = require('@hapi/hapi');
 const port = process.env.PORT || 4000;
+
+
 
 const init = async () => {
 
     const server = Hapi.server({
         port,
-        host: '0.0.0.0'
+        host: 'localhost'
     });
 
-    
+    server.route({
+        method: 'POST',
+        path: '/Insert',
+        handler: (request, h) => {
+            const params = request.query
+            crud.insertNote(query.subject,query.note)
+        }
+    });
+
     server.route({
         method: 'GET',
         path: '/',
         handler: (request, h) => {
-
-            return 'Hello World!';
+            const params = request.query
+            crud.retrieveNotes()
         }
     });
 
