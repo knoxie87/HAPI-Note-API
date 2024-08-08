@@ -14,4 +14,9 @@ Have outlined expected Object for JSON Payload below
     "note": "This is a note testing API input functionality"
 }
 
-![image](https://github.com/user-attachments/assets/276fa624-9e16-4224-831e-e6ba2e756d68)
+Get single note by subject.
+https://hapi-note-api-knox.onrender.com/GetNote/{subject}
+
+In this case I am passing testnote2 as subject
+GET https://hapi-note-api-knox.onrender.com/GetNote/testnote2
+
