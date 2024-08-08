@@ -1,12 +1,14 @@
 const crud = require('./crud.js')
 const Hapi = require('@hapi/hapi');
+const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 4000;
+
 
 const init = async () => {
 
     const server = Hapi.server({
         port,
-        host: '0.0.0.0'
+        host
     });
 
     // Route to insert note and return all notes
@@ -15,7 +17,7 @@ const init = async () => {
         path: '/Insert',
         handler: async (request) => {
             const params = request.payload
-            let result = await crud.insertNote(params.subject,params.note)
+            let result = crud.insertNote(params.subject,params.note)
             return result;
         }
     });
@@ -25,8 +27,18 @@ const init = async () => {
         method: 'GET',
         path: '/',
         handler: async () => {
-           let result = await crud.retrieveNotes()
+           let result = crud.retrieveNotes()
            return result;
+        }
+    });
+
+    // Route to retrieve specific note
+    server.route({
+        method: 'GET',
+        path: '/GetNote/{subject}',
+        handler: async (request) => {
+            let result = crud.retrieveSpecificNote(request.params.subject)
+            return result;
         }
     });
 

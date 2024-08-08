@@ -21,11 +21,15 @@ const retrieveNotes = () => {
 }
 
 const retrieveSpecificNote = (subject) => {
-    sql = `SELECT * FROM notes where subject = ${subject}`;
-    db.all(sql,[],(err,rows) => {
-        if (err) return console.error(err.message);
-        return rows
-    })
+    sql = `SELECT * FROM notes where subject = "${subject}"`;
+    return new Promise((resolve, reject) => {
+        db.all(sql, [], (err, rows) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(rows);
+        });
+    });
 }
 
 module.exports = {
