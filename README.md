@@ -1,5 +1,5 @@
 This is a simple Hapi Rest API to store and retrieve notes. Data is currently being store in a SQL Lite database.
-More functionality comming soon. Currently hosted on render.
+More functionality coming soon. Currently hosted on render.
 
 Routes are the following:
 
