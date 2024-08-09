@@ -32,10 +32,20 @@ const retrieveSpecificNote = (subject) => {
     });
 }
 
+const deleteNote = async (subject) => {
+    sql = `DELETE FROM notes where subject = "${subject}"`;
+    db.run(sql);
+    let result = await retrieveNotes()
+    return result;
+}
+
+
+
 module.exports = {
     insertNote,
     retrieveNotes,
-    retrieveSpecificNote
+    retrieveSpecificNote,
+    deleteNote
 }
 
 

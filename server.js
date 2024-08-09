@@ -42,6 +42,15 @@ const init = async () => {
         }
     });
 
+    server.route({
+        method: 'DELETE',
+        path: '/DeleteNote/{subject}',
+        handler: async (request) => {
+            let result = crud.deleteNote(request.params.subject)
+            return result;
+        }
+    })
+
     await server.start();
     console.log('Server running on ', server.info.uri);
 };
