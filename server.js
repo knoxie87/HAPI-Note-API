@@ -51,6 +51,16 @@ const init = async () => {
         }
     })
 
+    server.route({
+        method: 'PUT',  // Update a note        
+        path: '/UpdateNote/{id}',
+        handler: async (request) => {
+            const params = request.payload
+            let result = crud.updateNotes(request.params.id,params.subject,params.note)
+            return result;
+        }
+    });
+
     await server.start();
     console.log('Server running on ', server.info.uri);
 };

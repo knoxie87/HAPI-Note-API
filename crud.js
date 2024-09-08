@@ -39,13 +39,21 @@ const deleteNote = async (subject) => {
     return result;
 }
 
+const updateNotes = async (id,subject,note) => {
+    sql = `UPDATE notes SET subject = "${subject}", note = "${note}" WHERE id = ${id}`;
+    db.run(sql);
+    let result = await retrieveNotes()
+    return result;
+}
+
 
 
 module.exports = {
     insertNote,
     retrieveNotes,
     retrieveSpecificNote,
-    deleteNote
+    deleteNote,
+    updateNotes
 }
 
 
