@@ -32,8 +32,8 @@ const retrieveSpecificNote = (subject) => {
     });
 }
 
-const deleteNote = async (subject) => {
-    sql = `DELETE FROM notes where subject = "${subject}"`;
+const deleteNote = async (id) => {
+    sql = `DELETE FROM notes where id = "${id}"`;
     db.run(sql);
     let result = await retrieveNotes()
     return result;

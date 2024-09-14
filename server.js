@@ -44,9 +44,15 @@ const init = async () => {
 
     server.route({
         method: 'DELETE',
-        path: '/DeleteNote/{subject}',
+        path: '/DeleteNote/{id}',
+        config: {
+            cors: {
+                origin: ['*'],
+                additionalHeaders: ['cache-control', 'x-requested-with']
+            }
+        },
         handler: async (request) => {
-            let result = crud.deleteNote(request.params.subject)
+            let result = crud.deleteNote(request.params.id)
             return result;
         }
     })
@@ -54,6 +60,12 @@ const init = async () => {
     server.route({
         method: 'PUT',  // Update a note        
         path: '/UpdateNote/{id}',
+        config: {
+            cors: {
+                origin: ['*'],
+                additionalHeaders: ['cache-control', 'x-requested-with']
+            }
+        },
         handler: async (request) => {
             const params = request.payload
             let result = crud.updateNotes(request.params.id,params.subject,params.note)
